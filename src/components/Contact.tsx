@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Github, MapPin } from "lucide-react";
+import { Mail, Github, MapPin, Linkedin } from "lucide-react";
 
 export default function Contact() {
   const [ref, inView] = useInView({
@@ -48,12 +48,12 @@ export default function Contact() {
           className="max-w-4xl mx-auto"
         >
           <Card className="p-8 md:p-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <motion.a
                 href="mailto:patil.karan7000@gmail.com"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-start gap-4 p-6 rounded-lg border border-border hover:border-primary transition-all group cursor-pointer"
+                className="flex flex-col items-center text-center gap-4 p-6 rounded-lg border border-border hover:border-primary transition-all group cursor-pointer"
               >
                 <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-6 h-6 text-primary" />
@@ -62,7 +62,7 @@ export default function Contact() {
                   <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">
                     Email
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-sm break-all">
                     patil.karan7000@gmail.com
                   </p>
                 </div>
@@ -74,7 +74,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-start gap-4 p-6 rounded-lg border border-border hover:border-primary transition-all group cursor-pointer"
+                className="flex flex-col items-center text-center gap-4 p-6 rounded-lg border border-border hover:border-primary transition-all group cursor-pointer"
               >
                 <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
                   <Github className="w-6 h-6 text-primary" />
@@ -85,6 +85,27 @@ export default function Contact() {
                   </h3>
                   <p className="text-muted-foreground text-sm">
                     @Patilkaran7000
+                  </p>
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="https://www.linkedin.com/in/karan-patil-8a0a3222b"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex flex-col items-center text-center gap-4 p-6 rounded-lg border border-border hover:border-primary transition-all group cursor-pointer"
+              >
+                <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                  <Linkedin className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">
+                    LinkedIn
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    Connect with me
                   </p>
                 </div>
               </motion.a>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Mail, ArrowDown } from "lucide-react";
+import { Github, Mail, ArrowDown, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
@@ -105,6 +105,16 @@ export default function Hero() {
               className="p-3 rounded-full border border-border hover:border-primary transition-colors"
             >
               <Github className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/karan-patil-8a0a3222b"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 rounded-full border border-border hover:border-primary transition-colors"
+            >
+              <Linkedin className="w-6 h-6" />
             </motion.a>
             <motion.a
               href="mailto:patil.karan7000@gmail.com"

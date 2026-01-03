@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Mail, Heart } from "lucide-react";
+import { Github, Mail, Heart, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -36,6 +36,16 @@ export default function Footer() {
               className="p-2 rounded-full border border-border hover:border-primary transition-colors cursor-pointer"
             >
               <Github className="w-5 h-5" />
+            </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/karan-patil-8a0a3222b"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-2 rounded-full border border-border hover:border-primary transition-colors cursor-pointer"
+            >
+              <Linkedin className="w-5 h-5" />
             </motion.a>
             <motion.a
               href="mailto:patil.karan7000@gmail.com"
