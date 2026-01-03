@@ -1,63 +1,72 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Github, Mail, ArrowDown, Linkedin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRef } from "react";
 
 export default function Hero() {
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const appleEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
+
+  const appleEase: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section ref={containerRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated background gradient */}
       <motion.div
         className="absolute inset-0 opacity-30"
         animate={{
           background: [
-            "radial-gradient(circle at 20% 50%, oklch(0.9 0.1 250) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 50%, oklch(0.9 0.1 300) 0%, transparent 50%)",
-            "radial-gradient(circle at 20% 50%, oklch(0.9 0.1 250) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, oklch(0.95 0.05 250) 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 50%, oklch(0.95 0.05 300) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, oklch(0.95 0.05 250) 0%, transparent 50%)",
           ],
         }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <motion.div 
+        style={{ y, opacity, scale }}
+        className="container mx-auto px-4 relative z-10"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, ease: appleEase }}
+            transition={{ duration: 1.5, ease: appleEase }}
           >
-            <motion.h1
-              className="text-5xl md:text-8xl font-bold tracking-tighter mb-6"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.2, ease: appleEase }}
-            >
+            <h1 className="text-6xl md:text-9xl font-bold tracking-tighter mb-8">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                Karan Patil
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
+                Karan
               </span>
-            </motion.h1>
+            </h1>
           </motion.div>
 
           <motion.p
-            className="text-xl md:text-3xl text-muted-foreground mb-8 font-medium tracking-tight"
-            initial={{ opacity: 0, y: 40 }}
+            className="text-2xl md:text-4xl text-muted-foreground mb-10 font-medium tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: appleEase }}
+            transition={{ duration: 1.5, delay: 0.3, ease: appleEase }}
           >
             Full Stack Software Developer
           </motion.p>
 
           <motion.p
-            className="text-lg md:text-xl text-muted-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 40 }}
+            className="text-lg md:text-xl text-muted-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed font-light"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.6, ease: appleEase }}
+            transition={{ duration: 1.5, delay: 0.5, ease: appleEase }}
           >
             Crafting elegant solutions with modern technologies. Passionate about
             building scalable applications and exploring the latest in web development.
@@ -65,14 +74,14 @@ export default function Hero() {
 
           <motion.div
             className="flex flex-wrap gap-4 justify-center mb-16"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8, ease: appleEase }}
+            transition={{ duration: 1.5, delay: 0.7, ease: appleEase }}
           >
             <Button
               size="lg"
               onClick={() => scrollToSection("contact")}
-              className="group rounded-full px-8 h-12 text-base"
+              className="group rounded-full px-8 h-14 text-lg bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
             >
               Get In Touch
               <motion.span
@@ -87,7 +96,7 @@ export default function Hero() {
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("projects")}
-              className="rounded-full px-8 h-12 text-base backdrop-blur-sm bg-background/50"
+              className="rounded-full px-8 h-14 text-lg backdrop-blur-xl bg-background/30 border-foreground/10 hover:bg-background/50 transition-all duration-300"
             >
               View My Work
             </Button>
@@ -95,9 +104,9 @@ export default function Hero() {
 
           <motion.div
             className="flex gap-6 justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1, ease: appleEase }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 1, ease: appleEase }}
           >
             {[
               { href: "https://github.com/Patilkaran7000", Icon: Github },
@@ -110,20 +119,19 @@ export default function Hero() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="p-4 rounded-full bg-secondary/50 backdrop-blur-md border border-border/50 hover:border-primary hover:bg-primary/10 transition-colors"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-4 rounded-full bg-secondary/50 backdrop-blur-md border border-border/50 hover:border-foreground/20 hover:bg-secondary transition-all duration-300"
               >
-                <item.Icon className="w-6 h-6" />
+                <item.Icon className="w-6 h-6 text-foreground/80" />
               </motion.a>
             ))}
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, delay: 2, ease: "easeInOut" }}

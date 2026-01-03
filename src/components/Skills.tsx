@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { Card } from "@/components/ui/card";
 import {
   Database,
@@ -15,121 +14,83 @@ const skills = [
     category: "Version Control",
     icon: GitBranch,
     items: ["Git", "GitHub Copilot"],
-    color: "oklch(0.7 0.2 30)",
   },
   {
     category: "CI/CD",
     icon: Server,
     items: ["Jenkins"],
-    color: "oklch(0.7 0.2 120)",
   },
   {
     category: "Databases",
     icon: Database,
     items: ["MongoDB", "PostgreSQL"],
-    color: "oklch(0.7 0.2 200)",
   },
   {
     category: "DevOps",
     icon: Container,
     items: ["Docker"],
-    color: "oklch(0.7 0.2 250)",
   },
   {
     category: "AI & Innovation",
     icon: Sparkles,
     items: ["AI Prompt Engineering"],
-    color: "oklch(0.7 0.2 300)",
   },
   {
     category: "Development",
     icon: Code2,
     items: ["Full Stack Development"],
-    color: "oklch(0.7 0.2 350)",
   },
 ];
 
 export default function Skills() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px",
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-      },
-    },
-  };
-
   return (
     <section id="skills" className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center mb-24"
         >
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            Skills & Technologies
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
+            Skills
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
             A diverse toolkit for building modern, scalable applications
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
-              <motion.div key={skill.category} variants={itemVariants}>
-                <Card className="p-8 h-full hover:shadow-2xl transition-all duration-500 group cursor-pointer border border-border/50 bg-card/50 backdrop-blur-sm hover:-translate-y-2">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div
-                      className="w-14 h-14 rounded-2xl mb-6 flex items-center justify-center shadow-lg"
-                      style={{
-                        background: `linear-gradient(135deg, ${skill.color}, ${skill.color}80)`,
-                      }}
-                    >
-                      <Icon className="w-7 h-7 text-white" />
+              <motion.div
+                key={skill.category}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              >
+                <Card className="p-8 h-full bg-secondary/30 border-0 hover:bg-secondary/50 transition-colors duration-300 backdrop-blur-sm">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 bg-background rounded-xl shadow-sm">
+                      <Icon className="w-6 h-6 text-foreground" />
                     </div>
-                  </motion.div>
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors tracking-tight">
-                    {skill.category}
-                  </h3>
+                    <h3 className="text-xl font-bold tracking-tight">
+                      {skill.category}
+                    </h3>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item) => (
                       <span
                         key={item}
-                        className="px-4 py-1.5 bg-secondary/80 text-secondary-foreground rounded-full text-sm font-medium backdrop-blur-md"
+                        className="px-3 py-1 bg-background/50 text-muted-foreground rounded-md text-sm font-medium"
                       >
                         {item}
                       </span>
@@ -139,7 +100,7 @@ export default function Skills() {
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
