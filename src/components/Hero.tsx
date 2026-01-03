@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Mail, ArrowDown, Linkedin } from "lucide-react";
+import { Github, Mail, ArrowDown, Linkedin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
@@ -123,6 +123,14 @@ export default function Hero() {
               className="p-3 rounded-full border border-border hover:border-primary transition-colors"
             >
               <Mail className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              href="tel:+919370797431"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 rounded-full border border-border hover:border-primary transition-colors"
+            >
+              <Phone className="w-6 h-6" />
             </motion.a>
           </motion.div>
         </div>

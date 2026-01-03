@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Mail, Heart, Linkedin } from "lucide-react";
+import { Github, Mail, Heart, Linkedin, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -54,6 +54,14 @@ export default function Footer() {
               className="p-2 rounded-full border border-border hover:border-primary transition-colors cursor-pointer"
             >
               <Mail className="w-5 h-5" />
+            </motion.a>
+            <motion.a
+              href="tel:+919370797431"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-2 rounded-full border border-border hover:border-primary transition-colors cursor-pointer"
+            >
+              <Phone className="w-5 h-5" />
             </motion.a>
           </motion.div>
         </div>

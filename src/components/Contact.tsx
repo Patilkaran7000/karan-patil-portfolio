@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Github, MapPin, Linkedin } from "lucide-react";
+import { Mail, Github, MapPin, Linkedin, Phone } from "lucide-react";
 
 export default function Contact() {
   const [ref, inView] = useInView({
@@ -45,10 +45,10 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-5xl mx-auto"
         >
           <Card className="p-8 md:p-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <motion.a
                 href="mailto:patil.karan7000@gmail.com"
                 whileHover={{ scale: 1.02 }}
@@ -64,6 +64,25 @@ export default function Contact() {
                   </h3>
                   <p className="text-muted-foreground text-sm break-all">
                     patil.karan7000@gmail.com
+                  </p>
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="tel:+919370797431"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex flex-col items-center text-center gap-4 p-6 rounded-lg border border-border hover:border-primary transition-all group cursor-pointer"
+              >
+                <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                  <Phone className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">
+                    Phone
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    +91 9370797431
                   </p>
                 </div>
               </motion.a>
