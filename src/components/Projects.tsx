@@ -6,25 +6,11 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "Full Stack Web Application",
+    title: "Swift Grocery App",
     description:
-      "Built a scalable web application using modern technologies with Docker containerization and CI/CD pipeline integration.",
-    tags: ["React", "Node.js", "Docker", "PostgreSQL"],
-    gradient: "from-blue-500 to-purple-600",
-  },
-  {
-    title: "AI-Powered Solution",
-    description:
-      "Developed an intelligent system leveraging AI prompt engineering to automate complex workflows and enhance user experience.",
-    tags: ["AI", "Python", "MongoDB", "Jenkins"],
-    gradient: "from-purple-500 to-pink-600",
-  },
-  {
-    title: "DevOps Infrastructure",
-    description:
-      "Designed and implemented a robust CI/CD pipeline with automated testing, deployment, and monitoring capabilities.",
-    tags: ["Docker", "Jenkins", "Git", "PostgreSQL"],
-    gradient: "from-green-500 to-teal-600",
+      "A full-stack quick-commerce grocery delivery application inspired by Blinkit and Zepto. Features include real-time product inventory, cart management, secure checkout, and live order tracking.",
+    tags: ["React", "Node.js", "MongoDB", "Express", "Redux"],
+    gradient: "from-emerald-400 to-green-600",
   },
 ];
 
