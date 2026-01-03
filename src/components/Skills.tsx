@@ -53,58 +53,83 @@ export default function Skills() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
+    rootMargin: "-50px",
   });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      },
+    },
+  };
+
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
+    <section id="skills" className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
             Skills & Technologies
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
             A diverse toolkit for building modern, scalable applications
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
-              <motion.div
-                key={skill.category}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="p-6 h-full hover:shadow-lg transition-all duration-300 group cursor-pointer border-2 hover:border-primary/50">
+              <motion.div key={skill.category} variants={itemVariants}>
+                <Card className="p-8 h-full hover:shadow-2xl transition-all duration-500 group cursor-pointer border border-border/50 bg-card/50 backdrop-blur-sm hover:-translate-y-2">
                   <motion.div
-                    whileHover={{ scale: 1.05, rotate: 5 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <div
-                      className="w-12 h-12 rounded-lg mb-4 flex items-center justify-center"
+                      className="w-14 h-14 rounded-2xl mb-6 flex items-center justify-center shadow-lg"
                       style={{
                         background: `linear-gradient(135deg, ${skill.color}, ${skill.color}80)`,
                       }}
                     >
-                      <Icon className="w-6 h-6 text-white" />
+                      <Icon className="w-7 h-7 text-white" />
                     </div>
                   </motion.div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors tracking-tight">
                     {skill.category}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item) => (
                       <span
                         key={item}
-                        className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm"
+                        className="px-4 py-1.5 bg-secondary/80 text-secondary-foreground rounded-full text-sm font-medium backdrop-blur-md"
                       >
                         {item}
                       </span>
@@ -114,7 +139,7 @@ export default function Skills() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
