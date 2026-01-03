@@ -16,9 +16,9 @@ export default function Hero() {
         className="absolute inset-0 opacity-30"
         animate={{
           background: [
-            "radial-gradient(circle at 20% 50%, oklch(0.7 0.2 250) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 50%, oklch(0.7 0.2 300) 0%, transparent 50%)",
-            "radial-gradient(circle at 20% 50%, oklch(0.7 0.2 250) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, oklch(0.9 0.1 250) 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 50%, oklch(0.9 0.1 300) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, oklch(0.9 0.1 250) 0%, transparent 50%)",
           ],
         }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -38,7 +38,7 @@ export default function Hero() {
               transition={{ duration: 1.2, delay: 0.2, ease: appleEase }}
             >
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
                 Karan Patil
               </span>
             </motion.h1>
