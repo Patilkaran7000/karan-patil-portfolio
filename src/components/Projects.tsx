@@ -13,6 +13,14 @@ const projects = [
     gradient: "from-emerald-400/20 to-green-600/20",
     image: "linear-gradient(to bottom right, var(--color-emerald-400), var(--color-green-600))"
   },
+  {
+    title: "AI Fitness ChatBot",
+    description:
+      "An intelligent fitness assistant built with React that creates tailored workout routines for any session duration. It serves as a virtual personal trainer, answering questions about form, nutrition, and recovery while adapting plans to your specific goals.",
+    tags: ["React", "OpenAI API", "Tailwind CSS", "Framer Motion"],
+    gradient: "from-blue-400/20 to-indigo-600/20",
+    image: "linear-gradient(to bottom right, var(--color-blue-400), var(--color-indigo-600))"
+  },
 ];
 
 export default function Projects() {
